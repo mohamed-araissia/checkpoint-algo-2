@@ -5,9 +5,9 @@
 ALGORITHM summation
 VAR
  i : INTEGER;
- arr1 : ARRAY_OF INTEGER[n1];
- arr2 : ARRAY_OF INTEGER[n2];
- arr3 : ARRAY_OF INTEGER[n3];
+ arr1 : ARRAY_OF INTEGER[50];
+ arr2 : ARRAY_OF INTEGER[50];
+ arr3 : ARRAY_OF INTEGER[100];
  sum : INTEGER :=0;
 BEGIN
  FOR i FROM 0 TO arr1.length-1   DO
@@ -69,8 +69,8 @@ END
 
 ALGORITHM summation2
 VAR
- arr1 : ARRAY_OF INTEGER[n1];
- arr2 : ARRAY_OF INTEGER[n2];
+ arr1 : ARRAY_OF INTEGER[50];
+ arr2 : ARRAY_OF INTEGER[50];
  htab:  HASH_TABLE<INTEGER,INTEGER>;
  sum:INTEGER:=0;
  i:INTEGER;
@@ -187,9 +187,9 @@ END
 ALGORITHM summation2
 VAR
  i,j : INTEGER;
- arr1 : ARRAY_OF INTEGER[n1];
- arr2 : ARRAY_OF INTEGER[n2];
- arr3 : ARRAY_OF INTEGER[n3];
+ arr1 : ARRAY_OF INTEGER[50];
+ arr2 : ARRAY_OF INTEGER[50];
+ arr3 : ARRAY_OF INTEGER[100];
  sum : INTEGER :=0;
 BEGIN
  FOR i FROM 0 TO arr1.length-1   DO
