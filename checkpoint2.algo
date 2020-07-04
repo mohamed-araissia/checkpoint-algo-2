@@ -1,0 +1,220 @@
+// basic algorithm problem 1: solution 1 with arrays
+// 1- create another array
+// 2- iterating over the two arrays and check if it's not the new array than insert it 
+// 3-iterating over the new array and check each element is present i arr1 or arr2 if yes add that element to sum
+ALGORITHM summation
+VAR
+ i : INTEGER;
+ arr1 : ARRAY_OF INTEGER[n1];
+ arr2 : ARRAY_OF INTEGER[n2];
+ arr3 : ARRAY_OF INTEGER[n3];
+ sum : INTEGER :=0;
+BEGIN
+ FOR i FROM 0 TO arr1.length-1   DO
+        read(arr1[i])
+    END_FOR
+
+ FOR i FROM 0 TO arr2.length-1   DO
+        read(arr2[i])
+    END_FOR
+
+FOR i FROM 0 TO arr1.length-1 STEP 1  DO
+    IF (!arr3.includes(arr1[i])) THEN// we check if arr1[i] is not in arr3, if not insert it in arr3 
+        arr3.push(arr1[i])//push to insert it in the new array
+    END_IF
+END_FOR
+
+FOR i FROM 0 TO arr2.length-1 STEP 1  DO
+    IF (!arr3.includes(arr2[i])) THEN// we check if arr2[i] is not in arr3, if not insert it in arr3 
+        arr3.push(arr2[i])
+    END_IF
+END_FOR
+// right here we have an array arr3 with only not repeated elements in  arr1 and arr2
+
+//now we gonna check for any elements in arr3 is included in arr1 or arr2 then add it to the sum
+FOR i FROM 0 TO arr3.length-1 STEP 1  DO
+    if(((arr1.includes(arr3[i])&& !arr2.includes(arr3[i]))) OR (arr2.includes(arr3[i])&& !arr1.includes(arr3[i]))) THEN
+    sum:= sum + arr3[i]
+END_FOR
+ Write(sum);
+END
+
+//js function
+// var arr1=[45,4,2,3,1,55];
+// var arr2=[2,3,45]
+// var arr3=[];
+// var sum=0;
+//   for(var i=0;i<arr1.length;i++){
+//     if(!arr3.includes(arr1[i])){
+// arr3.push(arr1[i]);
+//   }}
+//   for(var i=0;i<arr2.length;i++){
+//     if(!arr3.includes(arr2[i])){
+// arr3.push(arr2[i]);
+//   }}
+//   // console.log(arr3)
+// var diff=[];
+//  for(var i=0;i<arr3.length;i++){
+//    if(arr1.includes(arr3[i])&& !arr2.includes(arr3[i])){
+//     sum+=(arr3[i]);
+//    }
+//    else if(arr2.includes(arr3[i])&& !arr1.includes(arr3[i])){
+//      sum+=(arr3[i])
+//    }
+//  }console.log(sum)=>4+1+55=60
+
+
+
+// problem 1 solution 2: with hash table
+
+ALGORITHM summation2
+VAR
+ arr1 : ARRAY_OF INTEGER[n1];
+ arr2 : ARRAY_OF INTEGER[n2];
+ htab:  HASH_TABLE<INTEGER,INTEGER>;
+ sum:INTEGER:=0;
+ i:INTEGER;
+ 
+BEGIN
+   
+FOR i FROM 0 TO arr1.length-1   DO //read the values from arr1
+        read(arr1[i])
+    END_FOR
+
+FOR i FROM 0 TO arr2.length-1   DO  // read the values from arr2
+        read(arr2[i])
+    END_FOR
+
+ FOR i FROM 0 TO arr1.length-1 STEP 1  DO  //insert the elements of arr1 in the hashtable and check if the element already exists in htab then increment its occurence(htab.get()) by1
+     
+     IF (htab.lookup(arr1[i])) THEN
+        occurence:=htab.get(arr1[i])
+         htab.insert(arr1[i],occurence+1)
+         ELSE
+         htab.insert(arr1[i],1)
+
+     END_IF
+ END_FOR
+
+  FOR i FROM 0 TO arr2.length-1 STEP 1  DO   //insert the elements of arr2 in the hashtable and check if the element already exists in htab then increment its occurence(htab.get()) by1
+    IF (htab.lookup(arr2[i])) THEN
+        occurence:=htab.get(arr2[i])
+         htab.insert(arr2[i],occurence+1)
+         ELSE
+         htab.insert(arr1[i],1)
+
+     END_IF
+ END_FOR
+ //here we have a hash table with key (elements from arr1 and arr2) and its values (occurence)
+//now we gonna loop over and check all the keys with an occurence of 1 and add it to sum
+FOR i FROM 0 TO arr1.length-1 STEP 1  DO
+    FOR j FROM 0 TO arr2.length STEP 1  DO
+        IF (hatb.get(arr1[i]=1)) THEN
+            sum:= sum + arr1[i]
+            BREAK;
+        END_IF
+        IF (hatb.get(arr2[j]=1)) THEN
+        sum:= sum + arr2[j]
+        BREAK;
+    END_IF
+END_FOR
+END_FOR
+ Write(sum);
+END
+
+
+
+//problem 2 solution 1 with hashtable
+
+ALGORITHM summation2
+VAR
+ arr1 : ARRAY_OF INTEGER[n1];
+ arr2 : ARRAY_OF INTEGER[n2];
+ htab:  HASH_TABLE<INTEGER,INTEGER>;
+ sum:INTEGER:=0;
+ i:INTEGER;
+ 
+BEGIN
+   
+FOR i FROM 0 TO arr1.length-1   DO //read the values from arr1
+        read(arr1[i])
+    END_FOR
+
+FOR i FROM 0 TO arr2.length-1   DO  // read the values from arr2
+        read(arr2[i])
+    END_FOR
+
+ FOR i FROM 0 TO arr1.length-1 STEP 1  DO  //insert the elements of arr1 in the hashtable and check if the element already exists in htab then increment its occurence(htab.get()) by1
+     
+     IF (htab.lookup(arr1[i])) THEN
+        occurence:=htab.get(arr1[i])
+         htab.insert(arr1[i],occurence+1)
+         ELSE
+         htab.insert(arr1[i],1)
+
+     END_IF
+ END_FOR
+
+  FOR i FROM 0 TO arr2.length-1 STEP 1  DO   //insert the elements of arr2 in the hashtable and check if the element already exists in htab then increment its occurence(htab.get()) by1
+    IF (htab.lookup(arr2[i])) THEN
+        occurence:=htab.get(arr2[i])
+         htab.insert(arr2[i],occurence+1)
+         ELSE
+         htab.insert(arr1[i],1)
+
+     END_IF
+ END_FOR
+ //here we have a hash table with key (elements from arr1 and arr2) and its values (occurence)
+//now we gonna loop over and check all the keys with an occurence of 1 and add it to sum
+FOR i FROM 0 TO arr1.length-1 STEP 1  DO
+    FOR j FROM 0 TO arr2.length STEP 1  DO
+        IF (hatb.get(arr1[i]=2)) THEN
+            sum:= (sum + arr1[i])*2
+            BREAK;
+        END_IF
+        IF (hatb.get(arr2[j]=2)) THEN
+        sum:= (sum + arr2[j])*2
+        BREAK;
+    END_IF
+END_FOR
+END_FOR
+ Write(sum);
+END
+
+
+//problem2 solution with arrays
+
+ALGORITHM summation2
+VAR
+ i,j : INTEGER;
+ arr1 : ARRAY_OF INTEGER[n1];
+ arr2 : ARRAY_OF INTEGER[n2];
+ arr3 : ARRAY_OF INTEGER[n3];
+ sum : INTEGER :=0;
+BEGIN
+ FOR i FROM 0 TO arr1.length-1   DO
+        read(arr1[i])
+    END_FOR
+
+ FOR i FROM 0 TO arr2.length-1   DO
+        read(arr2[i])
+    END_FOR
+
+FOR i FROM 0 TO arr1.length-1 STEP 1  DO
+        arr3.push(arr1[i])//push to insert it in the new array
+    END_IF
+END_FOR
+
+FOR i FROM 0 TO arr2.length-1 STEP 1  DO
+        arr3.push(arr2[i])
+    END_IF
+END_FOR
+// right here we have an array arr3 with all elements of  arr1 and arr2
+
+//now we gonna check for all the elements in arr3 that is included in arr1 and arr2 then add it to the sum
+FOR i FROM 0 TO arr3.length-1 STEP 1  DO
+    if(arr1.includes(arr3[i])&& arr2.includes(arr3[i]))  THEN
+    sum:= sum + arr3[i]
+END_FOR
+ Write(sum);
+END
